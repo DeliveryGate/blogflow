@@ -1,0 +1,36 @@
+name = "BlogFlow — AI SEO Blog Writer"
+client_id = "YOUR_CLIENT_ID"
+application_url = "https://blogflow.railway.app"
+embedded = true
+
+[access_scopes]
+scopes = "read_products,write_content,read_content"
+
+[auth]
+redirect_urls = [
+  "https://blogflow.railway.app/api/auth/callback",
+  "http://localhost:3000/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2026-01"
+
+  [[webhooks.subscriptions]]
+  topics = ["app/uninstalled"]
+  uri = "/api/webhooks/app-uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = ["shop/redact"]
+  uri = "/api/webhooks/shop-redact"
+
+  [[webhooks.subscriptions]]
+  topics = ["customers/redact"]
+  uri = "/api/webhooks/customers-redact"
+
+  [[webhooks.subscriptions]]
+  topics = ["customers/data_request"]
+  uri = "/api/webhooks/customers-data-request"
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "saltcore-dev.myshopify.com"
