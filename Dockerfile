@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --production
 COPY web/package*.json ./web/
-RUN cd web && npm install --production
+RUN cd web && npm install
 COPY prisma ./prisma
 RUN cd web && npx prisma generate --schema=../prisma/schema.prisma
 COPY . .
